@@ -9,38 +9,60 @@
 
 		sliderControl:$('.control'),
 
-		current: 0,
+		cur:0, // current
 
 		init:
 			function(){
 
-				setInterval(function(){
-					JquerySlider.setCurrentAndAnimate();
-				}, 1500);
+				var moon;
+
+				moon = setInterval(function(){JquerySlider.play()},2000);
+
+				JquerySlider.sliderControl.on('click', JquerySlider.play)
+										  .on('click',function(){
+										  	clearInterval(moon);
+										  });
+	
+			},
+
+		play:
+			function(e){
+
+				var direction = (e === undefined) ? 'next' : $(this).data('dir');
+
+				var result = JquerySlider.setcur(direction);
+
+				JquerySlider.sliderWrapper.animate({ // 500
+					marginLeft: (JquerySlider.cur === 0) ? 0 : result
+				});
 
 			},
 
-		setCurrentAndAnimate:
-			function(){
+		setcur:
+			function(dir){
 
-				if (JquerySlider.current === JquerySlider.sliderImageLength) {
-					JquerySlider.current = 0;
+				var length = JquerySlider.sliderImageLength,
+					width  = JquerySlider.sliderImageWidth,
+					sign   = (dir === 'next') ? '-=' : '+=',
+					value  = width;
+
+				JquerySlider.cur = (dir === 'next') ? ++JquerySlider.cur : --JquerySlider.cur;
+
+				if(JquerySlider.cur === -1){
+					JquerySlider.cur = length - 1;
+					value = ( width * length) - width;
+					sign  = '-=';
+				} 
+
+				else if ( JquerySlider.cur === length ){
+					JquerySlider.cur = 0;
+					value = 0;
+					sign  = '+=';
 				}
 
-				JquerySlider.anim(JquerySlider.current, 'next');
+				return sign + value;
 
-				++JquerySlider.current;
-
-			},
-
-		anim:
-			function(curr, dir){
-					var sign = (dir === 'next') ? '-=' : '+=';
-					JquerySlider.sliderWrapper.animate({
-					marginLeft: (curr === 0) ? 0 : sign + JquerySlider.sliderImageWidth
-				});
 			}
-
 	};
 
 	JquerySlider.init();
