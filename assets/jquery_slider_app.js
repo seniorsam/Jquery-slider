@@ -14,6 +14,9 @@
 		init:
 			function(){
 
+				// inititiate the container styles
+
+				JquerySlider.sliderWrapper.css("width", JquerySlider.sliderImageWidth * JquerySlider.sliderImageLength + "px");
 				var moon;
 
 				moon = setInterval(function(){JquerySlider.play()},2000);
@@ -22,7 +25,6 @@
 										  .on('click',function(){
 										  	clearInterval(moon);
 										  });
-	
 			},
 
 		play:

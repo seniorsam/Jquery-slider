@@ -8,6 +8,9 @@ h1{text-align: center;display: block;}
 	overflow: 
 	hidden;
 	position: relative;
+    border-radius: 15px;
+    border: solid 18px #fff;
+    box-shadow: 0px 0px 15px #d2d2d2;
 }
 
 .control{
@@ -42,7 +45,6 @@ h1{text-align: center;display: block;}
 }
 
 .slider-images{
-	width:1500px; 
 	margin: 0px;
 	padding: 0px; 
 	position: relative; 
@@ -59,4 +61,16 @@ h1{text-align: center;display: block;}
 	display:block; 
 	width: 100%; 
 	height: auto;
+}
+
+p{
+	color: #969696;
+	display:block;
+	text-align:center;
+	margin-top: 15px; 
+}
+
+p a {
+	color: #3399FF;
+	text-decoration: none;
 }
