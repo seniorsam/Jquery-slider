@@ -1,30 +1,52 @@
 (function(){
 	var JquerySlider = {
 
-		sliderWrapper:$('.slider-images'), // images wrapper
+		sliderContainer:$('.slider-wrapper'),
 
-		sliderImageWidth:$('.slider-images').find('img').width(),
+		sliderImagesHolder:$('.slider-images'),
+
+		sliderImages:$('.slider-images').find('img'),
 
 		sliderImageLength:$('.slider-images').find('img').length,
 
 		sliderControl:$('.control'),
 
-		cur:0, // current
+		cur:0,
+
+		options:{
+			containerWidth: "700"
+		},
 
 		init:
-			function(){
+			function(options){
+
+				// apply the user inserted options
+				$.extend(JquerySlider.options, options);
 
 				// inititiate the container styles
+				JquerySlider.setSizes();
 
-				JquerySlider.sliderWrapper.css("width", JquerySlider.sliderImageWidth * JquerySlider.sliderImageLength + "px");
-				var moon;
+				// action
+				var moon = setInterval(function(){JquerySlider.play()},2000);
 
-				moon = setInterval(function(){JquerySlider.play()},2000);
-
+				// when the user click the controls button
 				JquerySlider.sliderControl.on('click', JquerySlider.play)
 										  .on('click',function(){
 										  	clearInterval(moon);
 										  });
+			},
+
+
+		setSizes:
+			function(){
+
+				var optsWidth = JquerySlider.options.containerWidth;
+
+				// initiate the sizes
+				JquerySlider.sliderContainer.css( "width", optsWidth + "px" );
+				JquerySlider.sliderImagesHolder.css("width", optsWidth * JquerySlider.sliderImageLength + "px");
+				JquerySlider.sliderImages.css("width", optsWidth + "px");
+
 			},
 
 		play:
@@ -34,7 +56,7 @@
 
 				var result = JquerySlider.setcur(direction);
 
-				JquerySlider.sliderWrapper.animate({ // 500
+				JquerySlider.sliderImagesHolder.animate({ // 500
 					marginLeft: (JquerySlider.cur === 0) ? 0 : result
 				});
 
@@ -44,7 +66,7 @@
 			function(dir){
 
 				var length = JquerySlider.sliderImageLength,
-					width  = JquerySlider.sliderImageWidth,
+					width  = JquerySlider.options.containerWidth,
 					sign   = (dir === 'next') ? '-=' : '+=',
 					value  = width;
 
@@ -67,6 +89,8 @@
 			}
 	};
 
-	JquerySlider.init();
+	JquerySlider.init({
+		containerWidth: "600"
+	});
 
 }());

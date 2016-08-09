@@ -3,10 +3,8 @@ body{font-family: 'Ubuntu', sans-serif;}
 h1{text-align: center;display: block;}
 
 .slider-wrapper{
-	width:500px; 
 	margin: 0px auto; 
-	overflow: 
-	hidden;
+	overflow:hidden;
 	position: relative;
     border-radius: 15px;
     border: solid 18px #fff;
