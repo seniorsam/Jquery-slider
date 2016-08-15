@@ -31,7 +31,7 @@
 				JquerySlider.setSizes();
 
 				// loop the slider automatically
-				var moon = setInterval(function(){JquerySlider.play();console.log(JquerySlider.cur);},2000);
+				var moon = setInterval(function(){JquerySlider.play();},2000);
 
 				// when the user click the controls button
 				JquerySlider.sliderControl.on('click', JquerySlider.play)
