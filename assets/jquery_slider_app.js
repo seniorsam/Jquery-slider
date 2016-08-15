@@ -3,7 +3,7 @@
 
 		options:{
 			containerWidth: 1000,
-			numOfPictures: 2
+			numOfPictures: 1
 		},
 
 		sliderContainer:$('.slider-wrapper'),
