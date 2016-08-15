@@ -1,6 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 body{font-family: 'Ubuntu', sans-serif;}
 h1{text-align: center;display: block;}
+p{
+	color: #969696;
+	display:block;
+	text-align:center;
+	margin-top: 15px; 
+}
+
+p a {
+	color: #3399FF;
+	text-decoration: none;
+}
 
 .slider-wrapper{
 	margin: 0px auto; 
@@ -47,7 +58,7 @@ h1{text-align: center;display: block;}
 	padding: 0px; 
 	position: relative; 
 	overflow: hidden;
-} /*ul*/
+}
 
 .slider-images li{
 	list-style: none; 
@@ -59,16 +70,4 @@ h1{text-align: center;display: block;}
 	display:block; 
 	width: 100%; 
 	height: auto;
-}
-
-p{
-	color: #969696;
-	display:block;
-	text-align:center;
-	margin-top: 15px; 
-}
-
-p a {
-	color: #3399FF;
-	text-decoration: none;
 }
