@@ -3,7 +3,7 @@
 
 		options:{
 			containerWidth: 1000,
-			numOfPictures: 1
+			numOfPictures: 3
 		},
 
 		sliderContainer:$('.slider-wrapper'),
@@ -30,6 +30,11 @@
 				// inititiate the container styles
 				JquerySlider.setSizes();
 
+				// in case if the images less than the slider container
+				if(JquerySlider.sliderImageLength * JquerySlider.sliderImages.width() <= JquerySlider.sliderContainer.width()){
+					return;
+				}
+
 				// loop the slider automatically
 				var moon = setInterval(function(){JquerySlider.play();},2000);
 
@@ -54,13 +59,13 @@
 		play:
 			function(e){
 
-				/* if event object is undefined then the user still didn't trig any buttons 
+				/* 
+				   if event object is undefined then the user still didn't trig any buttons 
 				   otherwise get the button direction 
 				*/
 				
-				var direction = (e === undefined) ? 'next' : $(this).data('dir');
-
-				var result = JquerySlider.setcur(direction);
+				var direction = (e === undefined) ? 'next' : $(this).data('dir'),
+					result = JquerySlider.setcur(direction);
 
 				JquerySlider.sliderImagesHolder.animate({
 					marginLeft: (JquerySlider.cur === JquerySlider.options.numOfPictures - 1) ? 0 : result
@@ -102,7 +107,7 @@
 				   if we are already in the first slide 
 				   and the user pressed previous button   
 				*/
-
+				// (picsPerSlide - 1) - 1 -> (2-1)-1 = 0
 				if(JquerySlider.cur === (picsPerSlide - 1) - 1){
 					JquerySlider.cur = length - 1;
 					value = (width * length) - containerWidth;
